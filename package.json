@@ -2,14 +2,7 @@
   "homepage": "https://manojtanwar99.github.io/reactpro",
   "version": "0.0.0",
   "private": true,
-  "proxy": {
-    "reactpro/api": {
-      "target": "https://superheroapi.com/",
-      "pathRewrite": {
-        "^/api": "/"
-      }
-    }
-  },
+  
   "dependencies": {
     "@material-ui/core": "^4.9.12",
     "@material-ui/icons": "^4.9.1",
