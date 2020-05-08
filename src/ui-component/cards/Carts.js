@@ -52,12 +52,7 @@ export default function Carts() {
       return
     }
 
-    fetch('https://superheroapi.com/api/3070399882980494/search/' + value , {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-        'API-Key': 'secret'
-      } }).then(function (response) {
+    fetch('api/3070399882980494/search/' + value).then(function (response) {
       return response.json().then(function (response) {
 
         if (response.results && response.results.length > 0) {
@@ -149,7 +144,7 @@ export default function Carts() {
 
         </Route>
 
-        <Route exact path="/:id" render={cardsArr.length > 0 ? (props) => <Details {...props} data={cardsArr} /> : ""} />
+        <Route  path="/:id" render={cardsArr.length > 0 ? (props) => <Details {...props} data={cardsArr} /> : ""} />
 
 
       </Switch>
