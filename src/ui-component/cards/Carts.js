@@ -103,7 +103,7 @@ export default function Carts() {
 
 
       <Switch>
-        <Route exact path={`/`} >
+        <Route exact path={`/reactpro`} >
 
 
           <div className="form-group has-success has-feedback" >
@@ -116,7 +116,7 @@ export default function Carts() {
             {!loader ? cardsArr.map((data) => {
 
               return (
-                <Link to={`/${data["id"]}`} params={data}><Card style={{ width: '18rem', margin: "10px", display: "inline-block" }}>
+                <Link to={`/reactpro/${data["id"]}`} params={data}><Card style={{ width: '18rem', margin: "10px", display: "inline-block" }}>
 
                   {data.url ? <Card.Img variant="top" src={data.url} /> : <Card.Img variant="top" src="https://www.superherodb.com/pictures2/portraits/10/100/1508.jpg" />}
                   <Card.Body>
@@ -144,7 +144,7 @@ export default function Carts() {
 
         </Route>
 
-        <Route path="/:id" render={cardsArr.length > 0 ? (props) => <Details {...props} data={cardsArr} /> : ""} />
+        <Route path="reactpro/:id" render={cardsArr.length > 0 ? (props) => <Details {...props} data={cardsArr} /> : ""} />
 
 
       </Switch>
