@@ -21,14 +21,14 @@ export default function Carts() {
   const [loader, setloader] = useState(false)
   const [cardsArr, setcardsArr] = useState([])
   let results = []
-  
+  // let orignalActorArr=[];
   let actorArr = [];
   let total;
 
   const setResposneData = (data, start, end) => {
     return data.splice(start, end);
   }
-
+  
   useEffect(() => throttled.current(value), [value]);
 
   const throttled = useRef(throttle((newValue) => {
@@ -52,7 +52,7 @@ export default function Carts() {
       return
     }
 
-    fetch('api/3070399882980494/search/' + value).then(function (response) {
+    fetch('https://cors-anywhere.herokuapp.com/https://superheroapi.com/api/3070399882980494/search/' + value).then(function (response) {
       return response.json().then(function (response) {
 
         if (response.results && response.results.length > 0) {
@@ -144,7 +144,7 @@ export default function Carts() {
 
         </Route>
 
-        <Route  path="/:id" render={cardsArr.length > 0 ? (props) => <Details {...props} data={cardsArr} /> : ""} />
+        <Route path="/:id" render={cardsArr.length > 0 ? (props) => <Details {...props} data={cardsArr} /> : ""} />
 
 
       </Switch>
