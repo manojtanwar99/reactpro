@@ -19,7 +19,7 @@ export default class Details extends React.Component {
 
             <Card style={{ width: '28rem', margin: "10px", display: "inline-block" }}>
 
-                {this.data.url ? <Card.Img variant="top" src={this.data.url} /> : <Card.Img variant="top" src="https://www.superherodb.com/pictures2/portraits/10/100/1508.jpg" />}
+                {this.data && this.data.url ? <Card.Img variant="top" src={this.data.url} /> : <Card.Img variant="top" src="https://www.superherodb.com/pictures2/portraits/10/100/1508.jpg" />}
                 <Card.Body>
                     <Card.Title>{this.data.name}</Card.Title>
                     <Card.Text>
