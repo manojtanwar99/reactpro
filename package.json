@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "proxy": {
-    "/api": {
+    "reactpro/api": {
       "target": "https://superheroapi.com/",
       "pathRewrite": {
         "^/api": "/"
