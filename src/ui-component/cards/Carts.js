@@ -52,7 +52,12 @@ export default function Carts() {
       return
     }
 
-    fetch('https://superheroapi.com/api/3070399882980494/search/' + value).then(function (response) {
+    fetch('https://superheroapi.com/api/3070399882980494/search/' + value , {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'API-Key': 'secret'
+      } }).then(function (response) {
       return response.json().then(function (response) {
 
         if (response.results && response.results.length > 0) {
