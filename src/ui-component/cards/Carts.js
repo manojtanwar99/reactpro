@@ -144,7 +144,7 @@ export default function Carts() {
 
         </Route>
 
-        <Route path="/:id" render={cardsArr.length > 0 ? (props) => <Details {...props} data={cardsArr} /> : ""} />
+        <Route exact path="/:id" render={cardsArr.length > 0 ? (props) => <Details {...props} data={cardsArr} /> : ""} />
 
 
       </Switch>
