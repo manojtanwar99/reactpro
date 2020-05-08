@@ -2,7 +2,6 @@
   "homepage": "https://manojtanwar99.github.io/reactpro",
   "version": "0.0.0",
   "private": true,
-  
   "dependencies": {
     "@material-ui/core": "^4.9.12",
     "@material-ui/icons": "^4.9.1",
@@ -18,11 +17,10 @@
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
     "superagent": "^5.2.2"
-    
   },
   "scripts": {
-    "predeploy":"npm run build",
-    "deploy":"gh-pages -d build", 
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
