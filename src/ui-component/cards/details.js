@@ -6,8 +6,8 @@ export default class Details extends React.Component {
     constructor(props) {
         super(props)
 
-        this.detailsInfo = this.props.data.filter((item) =>item.id.toString() === this.props.match.params.id 
-)
+        this.detailsInfo = this.props.data.filter((item) =>item.id.toString() === this.props.match.params.id )
+        debugger
         this.data=this.detailsInfo[0]
 
     }
