@@ -19,8 +19,6 @@ h1, p {
 }
 #root{
   background: black;
-  height: auto
-}
-.btn .btn-primary{
-  background: black;
+  height: auto;
+  min-height: 900px;
 }

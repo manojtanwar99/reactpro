@@ -1,13 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import './card.css'
 import Details from './details'
-import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button'
-
-
+import ActorsCard from './card'
 import {
   BrowserRouter as Router,
-  Link,
   Switch,
   Route
 
@@ -16,6 +12,7 @@ import {
 export default function Carts() {
 
   const [orignalActorArr, setorignalActorArr] = useState([])
+  const [val, setVal] = useState(null)
   const [loader, setloader] = useState(false)
   const [cardsArr, setcardsArr] = useState([])
   let results = []
@@ -47,12 +44,11 @@ export default function Carts() {
         } else {
           getDataByFilter("a")
         }
-  
-  
-      }, 500))
+
+
+      }, 500)) 
     }
-    
-  }, []);
+  }, [val]);
 
 
 
@@ -111,37 +107,18 @@ export default function Carts() {
       <Switch>
         <Route exact path={`/reactpro`} >
           <div className="form-group has-success has-feedback" >
-            
+
             <div className="col-sm-12 ">
-              <input type="text" placeholder="search" className="form-control" id="inputSuccessSeacrch" />
+              <input type="text" placeholder="search" className="form-control" id="inputSuccessSeacrch" onChange={(e)=>setVal(e.target.value)}/>
               <span className="glyphicon glyphicon-ok form-control-feedback"></span>
             </div>
             {!loader ? cardsArr.map((data) => {
               return (
-                <Link to={`/reactpro/${data["id"]}`} params={data}>
-                  
-                  <Card className="cardhover" style={{ width: '18rem', margin: "10px", display: "inline-block" }}>
-
-                  {data.url ? <Card.Img variant="top" src={data.url} /> : <Card.Img variant="top" src="https://www.superherodb.com/pictures2/portraits/10/100/1508.jpg" />}
-                  <Card.Body>
-                    <Card.Title>{data.name}</Card.Title>
-                    <Card.Text>
-                      {data["full-name"]}
-                      <br></br>
-                      {data["place-of-birth"]}
-                      <br></br>
-                      {data.publisher}
-
-                    </Card.Text>
-                    <Button variant="primary" className="detail-btn" >More Details</Button>
-                  </Card.Body>
-                </Card>
-
-                </Link>)
+                <ActorsCard data={data} />)
             }) : <div className="loader"></div>}
           </div>
         </Route>
-        <Route path="/reactpro/:id" render={cardsArr.length > 0 ? (props) => <Details {...props} data={cardsArr} /> : ""} />
+        <Route exact path="/reactpro/:id" render={cardsArr.length > 0 ? (props) => <Details {...props} data={cardsArr} /> : ""} />
       </Switch>
     </Router>
   )
