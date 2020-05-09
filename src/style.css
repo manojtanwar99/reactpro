@@ -17,3 +17,10 @@ h1, p {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+#root{
+  background: black;
+  height: auto
+}
+.btn .btn-primary{
+  background: black;
+}

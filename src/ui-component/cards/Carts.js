@@ -40,15 +40,18 @@ export default function Carts() {
 
   useEffect(() => {
     var inputField = document.getElementById("inputSuccessSeacrch");
-    inputField.addEventListener('keydown', debounce(function (e) {
-      if (e && e.target && e.target.value) {
-        getDataByFilter(e.target.value)
-      } else {
-        getDataByFilter("a")
-      }
-
-
-    }, 500))
+    if(inputField){
+      inputField.addEventListener('keydown', debounce(function (e) {
+        if (e && e.target && e.target.value) {
+          getDataByFilter(e.target.value)
+        } else {
+          getDataByFilter("a")
+        }
+  
+  
+      }, 500))
+    }
+    
   }, []);
 
 
@@ -91,7 +94,6 @@ export default function Carts() {
   }
 
   window.onscroll = debounce(() => {
-
     if (window.innerHeight + document.documentElement.scrollHeight >= document.scrollingElement.offsetHeight) {
       setcardsArr(cardsArr => cardsArr.concat(orignalActorArr.splice(actorArr.length, actorArr.length + 12)));
     }
@@ -109,14 +111,16 @@ export default function Carts() {
       <Switch>
         <Route exact path={`/reactpro`} >
           <div className="form-group has-success has-feedback" >
-            <label className="col-sm-2 control-label" for="inputSuccess">Search</label>
-            <div className="col-sm-12">
-              <input type="text" className="form-control" id="inputSuccessSeacrch" />
+            
+            <div className="col-sm-12 ">
+              <input type="text" placeholder="search" className="form-control" id="inputSuccessSeacrch" />
               <span className="glyphicon glyphicon-ok form-control-feedback"></span>
             </div>
             {!loader ? cardsArr.map((data) => {
               return (
-                <Link to={`/reactpro/${data["id"]}`} params={data}><Card style={{ width: '18rem', margin: "10px", display: "inline-block" }}>
+                <Link to={`/reactpro/${data["id"]}`} params={data}>
+                  
+                  <Card className="cardhover" style={{ width: '18rem', margin: "10px", display: "inline-block" }}>
 
                   {data.url ? <Card.Img variant="top" src={data.url} /> : <Card.Img variant="top" src="https://www.superherodb.com/pictures2/portraits/10/100/1508.jpg" />}
                   <Card.Body>
@@ -129,7 +133,7 @@ export default function Carts() {
                       {data.publisher}
 
                     </Card.Text>
-                    <Button variant="primary" >More Details</Button>
+                    <Button variant="primary" className="detail-btn" >More Details</Button>
                   </Card.Body>
                 </Card>
 

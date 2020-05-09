@@ -15,23 +15,7 @@ export default class Details extends React.Component {
     render() {
         return (
 
-            // <Card style={{ width: '28rem', margin: "10px", display: "inline-block" }}>
-
-            //     {this.data && this.data.url ? <Card.Img variant="top" src={this.data.url} /> : <Card.Img variant="top" src="https://www.superherodb.com/pictures2/portraits/10/100/1508.jpg" />}
-            //     <Card.Body>
-            //         <Card.Title>{this.data.name}</Card.Title>
-            //         <Card.Text>
-            //             {this.data["full-name"]}
-            //             <br></br>
-            //             {this.data["place-of-birth"]}
-            //             <br></br>
-            //             {this.data.publisher}
-
-            //         </Card.Text>
-
-            //     </Card.Body>
-            // </Card>
-            <div className="card">
+            <div className="carddetail">
 
                 {this.data && this.data.url ? <img src={this.data.url} alt="Avatar"  /> : <img src="https://www.superherodb.com/pictures2/portraits/10/100/1508.jpg" alt="Avatar"  />}
 
@@ -40,6 +24,7 @@ export default class Details extends React.Component {
                     <p>{this.data["place-of-birth"]}</p>
                     <br></br>
                     <p>{this.data.publisher}</p>
+                    <p>{this.data["first-appearance"]}</p>
                 </div>
             </div>
 
