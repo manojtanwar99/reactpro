@@ -3,7 +3,7 @@ import './card.css'
 import Details from './details'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
-import debounce from "lodash.debounce";
+
 
 import {
   BrowserRouter as Router,
@@ -13,32 +13,46 @@ import {
 
 } from "react-router-dom";
 
-import { throttle } from "lodash";
 export default function Carts() {
-  
-  const [value, setValue] = useState("")
+
   const [orignalActorArr, setorignalActorArr] = useState([])
   const [loader, setloader] = useState(false)
   const [cardsArr, setcardsArr] = useState([])
   let results = []
-  // let orignalActorArr=[];
   let actorArr = [];
   let total;
 
   const setResposneData = (data, start, end) => {
     return data.splice(start, end);
   }
-  
-  useEffect(() => throttled.current(value), [value]);
 
-  const throttled = useRef(throttle((newValue) => {
-    if (newValue) {
-      getDataByFilter(newValue)
-    } else if (newValue === "") {
-      getDataByFilter("a")
+
+  const debounce = (func, delay) => {
+    let debounceTimer
+    return function () {
+      const context = this
+      const args = arguments
+      clearTimeout(debounceTimer)
+      debounceTimer
+        = setTimeout(() => func.apply(context, args), delay)
     }
+  }
 
-  }, 3000));
+  useEffect(() => {
+    var inputField = document.getElementById("inputSuccessSeacrch");
+    inputField.addEventListener('keydown', debounce(function (e) {
+      if (e && e.target && e.target.value) {
+        getDataByFilter(e.target.value)
+      } else {
+        getDataByFilter("a")
+      }
+
+
+    }, 500))
+  }, []);
+
+
+
 
   function getDataByFilter(value) {
 
@@ -58,11 +72,9 @@ export default function Carts() {
         if (response.results && response.results.length > 0) {
 
           results = response.results.map((item, i) => { return { ...item.image, ...item.biography, "id": i } });
-          //orignalActorArr = results;
           setorignalActorArr(results)
           total = results.length;
           if (total > 12) {
-
             actorArr = setResposneData(results, 0, 12)
           } else {
             actorArr = results
@@ -80,14 +92,9 @@ export default function Carts() {
 
   window.onscroll = debounce(() => {
 
-
     if (window.innerHeight + document.documentElement.scrollHeight >= document.scrollingElement.offsetHeight) {
-      // actorArr.concat(orignalActorArr.splice(actorArr.length, 12));
-      //var next = orignalActorArr.splice(0 ,24)
-
       setcardsArr(cardsArr => cardsArr.concat(orignalActorArr.splice(actorArr.length, actorArr.length + 12)));
     }
-
   }, 100);
 
 
@@ -99,22 +106,15 @@ export default function Carts() {
   return (
 
     <Router >
-
-
-
       <Switch>
         <Route exact path={`/reactpro`} >
-
-
           <div className="form-group has-success has-feedback" >
             <label className="col-sm-2 control-label" for="inputSuccess">Search</label>
             <div className="col-sm-12">
-              <input type="text" className="form-control" id="inputSuccess" onChange={(e) => setValue(e.target.value)} />
+              <input type="text" className="form-control" id="inputSuccessSeacrch" />
               <span className="glyphicon glyphicon-ok form-control-feedback"></span>
             </div>
-
             {!loader ? cardsArr.map((data) => {
-
               return (
                 <Link to={`/reactpro/${data["id"]}`} params={data}><Card style={{ width: '18rem', margin: "10px", display: "inline-block" }}>
 
@@ -135,21 +135,10 @@ export default function Carts() {
 
                 </Link>)
             }) : <div className="loader"></div>}
-
-
           </div>
-
-
-
-
         </Route>
-
         <Route path="/reactpro/:id" render={cardsArr.length > 0 ? (props) => <Details {...props} data={cardsArr} /> : ""} />
-
-
       </Switch>
-
-
     </Router>
   )
 

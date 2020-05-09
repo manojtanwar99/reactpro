@@ -5,17 +5,14 @@ export default class Details extends React.Component {
 
     constructor(props) {
         super(props)
-
-        this.detailsInfo = this.props.data.filter((item) =>item.id.toString() === this.props.match.params.id )
-        debugger
-        this.data=this.detailsInfo[0]
+        this.detailsInfo = this.props.data.filter((item) => item.id.toString() === this.props.match.params.id)
+        this.data = this.detailsInfo[0]
 
     }
 
 
     render() {
         return (
-            
 
             <Card style={{ width: '28rem', margin: "10px", display: "inline-block" }}>
 
@@ -30,11 +27,11 @@ export default class Details extends React.Component {
                         {this.data.publisher}
 
                     </Card.Text>
-                    {/* <Button variant="primary" >More Details</Button> */}
+                  
                 </Card.Body>
-            </Card> 
+            </Card>
 
-                     
+
         );
 
     }
