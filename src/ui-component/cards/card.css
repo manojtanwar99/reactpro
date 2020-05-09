@@ -16,10 +16,13 @@
   margin: auto;
   height: 70%;
   width: 100%;
+  border-radius: 20%;
 }
 
-.container {
+.carddetail-container {
   padding: 2px 16px;
+  margin: auto;
+  text-align: center;
 }
 #inputSuccessSeacrch{
   width: 88%;

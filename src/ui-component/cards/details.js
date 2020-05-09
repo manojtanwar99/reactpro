@@ -19,7 +19,7 @@ export default class Details extends React.Component {
 
                 {this.data && this.data.url ? <img src={this.data.url} alt="Avatar"  /> : <img src="https://www.superherodb.com/pictures2/portraits/10/100/1508.jpg" alt="Avatar"  />}
 
-                <div className="container">
+                <div className="carddetail-container">
                     <h4><b>{this.data["full-name"]}</b></h4>
                     <p>{this.data["place-of-birth"]}</p>
                     <br></br>
